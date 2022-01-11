@@ -1,7 +1,7 @@
 ---
 title: "Lab 2 Homework"
 author: "Yutong Ji"
-date: "2022-01-08"
+date: "2022-01-10"
 output:
   html_document: 
     theme: spacelab
@@ -85,9 +85,6 @@ springs
 ```r
 colnames(spring_matrix) <- scientist
 rownames(spring_matrix) <- springs
-```
-
-```r
 spring_matrix
 ```
 
