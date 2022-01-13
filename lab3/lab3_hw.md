@@ -244,178 +244,25 @@ names(sleep)
 6. How many herbivores are represented in the data?  
 
 ```r
-sleep=="herbi"
+sleep$vore== "herbi"
 ```
 
 ```
-##        name genus  vore order conservation sleep_total sleep_rem sleep_cycle
-##  [1,] FALSE FALSE FALSE FALSE        FALSE       FALSE        NA          NA
-##  [2,] FALSE FALSE FALSE FALSE           NA       FALSE     FALSE          NA
-##  [3,] FALSE FALSE  TRUE FALSE        FALSE       FALSE     FALSE          NA
-##  [4,] FALSE FALSE FALSE FALSE        FALSE       FALSE     FALSE       FALSE
-##  [5,] FALSE FALSE  TRUE FALSE        FALSE       FALSE     FALSE       FALSE
-##  [6,] FALSE FALSE  TRUE FALSE           NA       FALSE     FALSE       FALSE
-##  [7,] FALSE FALSE FALSE FALSE        FALSE       FALSE     FALSE       FALSE
-##  [8,] FALSE FALSE    NA FALSE           NA       FALSE        NA          NA
-##  [9,] FALSE FALSE FALSE FALSE        FALSE       FALSE     FALSE       FALSE
-## [10,] FALSE FALSE  TRUE FALSE        FALSE       FALSE        NA          NA
-## [11,] FALSE FALSE  TRUE FALSE        FALSE       FALSE     FALSE          NA
-## [12,] FALSE FALSE  TRUE FALSE        FALSE       FALSE     FALSE       FALSE
-## [13,] FALSE FALSE FALSE FALSE        FALSE       FALSE     FALSE          NA
-## [14,] FALSE FALSE  TRUE FALSE        FALSE       FALSE     FALSE       FALSE
-## [15,] FALSE FALSE FALSE FALSE        FALSE       FALSE     FALSE          NA
-## [16,] FALSE FALSE FALSE FALSE           NA       FALSE     FALSE          NA
-## [17,] FALSE FALSE FALSE FALSE        FALSE       FALSE     FALSE       FALSE
-## [18,] FALSE FALSE FALSE FALSE        FALSE       FALSE     FALSE       FALSE
-## [19,] FALSE FALSE  TRUE FALSE        FALSE       FALSE     FALSE          NA
-## [20,] FALSE FALSE FALSE FALSE        FALSE       FALSE     FALSE       FALSE
-## [21,] FALSE FALSE  TRUE FALSE        FALSE       FALSE        NA          NA
-## [22,] FALSE FALSE FALSE FALSE        FALSE       FALSE     FALSE       FALSE
-## [23,] FALSE FALSE  TRUE FALSE        FALSE       FALSE     FALSE       FALSE
-## [24,] FALSE FALSE  TRUE FALSE        FALSE       FALSE     FALSE          NA
-## [25,] FALSE FALSE FALSE FALSE        FALSE       FALSE     FALSE       FALSE
-## [26,] FALSE FALSE FALSE FALSE        FALSE       FALSE     FALSE          NA
-## [27,] FALSE FALSE  TRUE FALSE           NA       FALSE        NA          NA
-## [28,] FALSE FALSE FALSE FALSE        FALSE       FALSE     FALSE       FALSE
-## [29,] FALSE FALSE FALSE FALSE           NA       FALSE     FALSE       FALSE
-## [30,] FALSE FALSE  TRUE FALSE        FALSE       FALSE     FALSE          NA
-## [31,] FALSE FALSE FALSE FALSE        FALSE       FALSE     FALSE          NA
-## [32,] FALSE FALSE FALSE FALSE        FALSE       FALSE     FALSE          NA
-## [33,] FALSE FALSE  TRUE FALSE        FALSE       FALSE     FALSE          NA
-## [34,] FALSE FALSE FALSE FALSE           NA       FALSE     FALSE       FALSE
-## [35,] FALSE FALSE  TRUE FALSE        FALSE       FALSE     FALSE          NA
-## [36,] FALSE FALSE  TRUE FALSE        FALSE       FALSE        NA          NA
-## [37,] FALSE FALSE FALSE FALSE        FALSE       FALSE     FALSE          NA
-## [38,] FALSE FALSE FALSE FALSE           NA       FALSE     FALSE       FALSE
-## [39,] FALSE FALSE  TRUE FALSE        FALSE       FALSE     FALSE          NA
-## [40,] FALSE FALSE  TRUE FALSE        FALSE       FALSE     FALSE       FALSE
-## [41,] FALSE FALSE  TRUE FALSE           NA       FALSE        NA          NA
-## [42,] FALSE FALSE  TRUE FALSE        FALSE       FALSE     FALSE       FALSE
-## [43,] FALSE FALSE FALSE FALSE           NA       FALSE     FALSE       FALSE
-## [44,] FALSE FALSE  TRUE FALSE        FALSE       FALSE        NA          NA
-## [45,] FALSE FALSE FALSE FALSE           NA       FALSE        NA          NA
-## [46,] FALSE FALSE  TRUE FALSE        FALSE       FALSE     FALSE          NA
-## [47,] FALSE FALSE FALSE FALSE        FALSE       FALSE        NA          NA
-## [48,] FALSE FALSE  TRUE FALSE        FALSE       FALSE     FALSE       FALSE
-## [49,] FALSE FALSE  TRUE FALSE        FALSE       FALSE     FALSE          NA
-## [50,] FALSE FALSE FALSE FALSE           NA       FALSE     FALSE       FALSE
-## [51,] FALSE FALSE FALSE FALSE        FALSE       FALSE        NA          NA
-## [52,] FALSE FALSE FALSE FALSE        FALSE       FALSE        NA          NA
-## [53,] FALSE FALSE FALSE FALSE        FALSE       FALSE        NA          NA
-## [54,] FALSE FALSE FALSE FALSE           NA       FALSE     FALSE       FALSE
-## [55,] FALSE FALSE    NA FALSE        FALSE       FALSE     FALSE          NA
-## [56,] FALSE FALSE FALSE FALSE        FALSE       FALSE        NA          NA
-## [57,] FALSE FALSE    NA FALSE           NA       FALSE        NA          NA
-## [58,] FALSE FALSE    NA FALSE           NA       FALSE     FALSE          NA
-## [59,] FALSE FALSE FALSE FALSE        FALSE       FALSE     FALSE          NA
-## [60,] FALSE FALSE FALSE FALSE        FALSE       FALSE        NA          NA
-## [61,] FALSE FALSE  TRUE FALSE           NA       FALSE     FALSE          NA
-## [62,] FALSE FALSE FALSE FALSE        FALSE       FALSE     FALSE          NA
-## [63,] FALSE FALSE    NA FALSE        FALSE       FALSE     FALSE          NA
-## [64,] FALSE FALSE  TRUE FALSE        FALSE       FALSE     FALSE       FALSE
-## [65,] FALSE FALSE FALSE FALSE           NA       FALSE        NA          NA
-## [66,] FALSE FALSE FALSE FALSE           NA       FALSE     FALSE          NA
-## [67,] FALSE FALSE FALSE FALSE        FALSE       FALSE     FALSE       FALSE
-## [68,] FALSE FALSE  TRUE FALSE           NA       FALSE     FALSE       FALSE
-## [69,] FALSE FALSE    NA FALSE           NA       FALSE     FALSE          NA
-## [70,] FALSE FALSE  TRUE FALSE        FALSE       FALSE        NA          NA
-## [71,] FALSE FALSE  TRUE FALSE        FALSE       FALSE     FALSE       FALSE
-## [72,] FALSE FALSE  TRUE FALSE        FALSE       FALSE     FALSE          NA
-## [73,] FALSE FALSE    NA FALSE           NA       FALSE     FALSE       FALSE
-## [74,] FALSE FALSE FALSE FALSE        FALSE       FALSE     FALSE       FALSE
-## [75,] FALSE FALSE FALSE FALSE           NA       FALSE        NA          NA
-## [76,] FALSE FALSE  TRUE FALSE           NA       FALSE        NA          NA
-## [77,] FALSE FALSE  TRUE FALSE        FALSE       FALSE     FALSE       FALSE
-## [78,] FALSE FALSE FALSE FALSE           NA       FALSE     FALSE          NA
-## [79,] FALSE FALSE FALSE FALSE           NA       FALSE     FALSE       FALSE
-## [80,] FALSE FALSE FALSE FALSE           NA       FALSE        NA          NA
-## [81,] FALSE FALSE FALSE FALSE           NA       FALSE     FALSE          NA
-## [82,] FALSE FALSE FALSE FALSE           NA       FALSE        NA          NA
-## [83,] FALSE FALSE FALSE FALSE           NA       FALSE     FALSE       FALSE
-##       awake brainwt bodywt
-##  [1,] FALSE      NA  FALSE
-##  [2,] FALSE   FALSE  FALSE
-##  [3,] FALSE      NA  FALSE
-##  [4,] FALSE   FALSE  FALSE
-##  [5,] FALSE   FALSE  FALSE
-##  [6,] FALSE      NA  FALSE
-##  [7,] FALSE      NA  FALSE
-##  [8,] FALSE      NA  FALSE
-##  [9,] FALSE   FALSE  FALSE
-## [10,] FALSE   FALSE  FALSE
-## [11,] FALSE   FALSE  FALSE
-## [12,] FALSE   FALSE  FALSE
-## [13,] FALSE      NA  FALSE
-## [14,] FALSE   FALSE  FALSE
-## [15,] FALSE   FALSE  FALSE
-## [16,] FALSE   FALSE  FALSE
-## [17,] FALSE   FALSE  FALSE
-## [18,] FALSE   FALSE  FALSE
-## [19,] FALSE   FALSE  FALSE
-## [20,] FALSE   FALSE  FALSE
-## [21,] FALSE   FALSE  FALSE
-## [22,] FALSE   FALSE  FALSE
-## [23,] FALSE   FALSE  FALSE
-## [24,] FALSE   FALSE  FALSE
-## [25,] FALSE   FALSE  FALSE
-## [26,] FALSE   FALSE  FALSE
-## [27,] FALSE      NA  FALSE
-## [28,] FALSE   FALSE  FALSE
-## [29,] FALSE   FALSE  FALSE
-## [30,] FALSE      NA  FALSE
-## [31,] FALSE      NA  FALSE
-## [32,] FALSE   FALSE  FALSE
-## [33,] FALSE   FALSE  FALSE
-## [34,] FALSE   FALSE  FALSE
-## [35,] FALSE      NA  FALSE
-## [36,] FALSE   FALSE  FALSE
-## [37,] FALSE      NA  FALSE
-## [38,] FALSE   FALSE  FALSE
-## [39,] FALSE      NA  FALSE
-## [40,] FALSE   FALSE  FALSE
-## [41,] FALSE      NA  FALSE
-## [42,] FALSE   FALSE  FALSE
-## [43,] FALSE   FALSE  FALSE
-## [44,] FALSE      NA  FALSE
-## [45,] FALSE   FALSE  FALSE
-## [46,] FALSE      NA  FALSE
-## [47,] FALSE      NA  FALSE
-## [48,] FALSE   FALSE  FALSE
-## [49,] FALSE   FALSE  FALSE
-## [50,] FALSE   FALSE  FALSE
-## [51,] FALSE      NA  FALSE
-## [52,] FALSE   FALSE  FALSE
-## [53,] FALSE      NA  FALSE
-## [54,] FALSE   FALSE  FALSE
-## [55,] FALSE   FALSE  FALSE
-## [56,] FALSE      NA  FALSE
-## [57,] FALSE      NA  FALSE
-## [58,] FALSE   FALSE  FALSE
-## [59,] FALSE      NA  FALSE
-## [60,] FALSE      NA  FALSE
-## [61,] FALSE      NA  FALSE
-## [62,] FALSE   FALSE  FALSE
-## [63,] FALSE   FALSE  FALSE
-## [64,] FALSE   FALSE  FALSE
-## [65,] FALSE      NA  FALSE
-## [66,] FALSE   FALSE  FALSE
-## [67,] FALSE   FALSE  FALSE
-## [68,] FALSE   FALSE  FALSE
-## [69,] FALSE   FALSE  FALSE
-## [70,] FALSE   FALSE  FALSE
-## [71,] FALSE   FALSE  FALSE
-## [72,] FALSE      NA  FALSE
-## [73,] FALSE   FALSE  FALSE
-## [74,] FALSE   FALSE  FALSE
-## [75,] FALSE   FALSE  FALSE
-## [76,] FALSE      NA  FALSE
-## [77,] FALSE   FALSE  FALSE
-## [78,] FALSE   FALSE  FALSE
-## [79,] FALSE   FALSE  FALSE
-## [80,] FALSE      NA  FALSE
-## [81,] FALSE   FALSE  FALSE
-## [82,] FALSE   FALSE  FALSE
-## [83,] FALSE   FALSE  FALSE
+##  [1] FALSE FALSE  TRUE FALSE  TRUE  TRUE FALSE    NA FALSE  TRUE  TRUE  TRUE
+## [13] FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE  TRUE  TRUE
+## [25] FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE  TRUE
+## [37] FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE
+## [49]  TRUE FALSE FALSE FALSE FALSE FALSE    NA FALSE    NA    NA FALSE FALSE
+## [61]  TRUE FALSE    NA  TRUE FALSE FALSE FALSE  TRUE    NA  TRUE  TRUE  TRUE
+## [73]    NA FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
+```
+
+```r
+sum(sleep$vore== "herbi", na.rm = TRUE)
+```
+
+```
+## [1] 32
 ```
 
 7. We are interested in two groups; small and large mammals. Let's define small as less than or equal to 1kg body weight and large as greater than or equal to 200kg body weight. Make two new dataframes (large and small) based on these parameters.
@@ -572,32 +419,21 @@ mean(large_mammals_sleep)
 10. Which animal is the sleepiest among the entire dataframe?
 
 ```r
-mammals_sleep <- data.frame(sleep[,6])
-mammals_awake <- data.frame(sleep[,9])
-mammals_sleep_difference <- mammals_awake - mammals_sleep
-min(mammals_sleep_difference)
+which.max(sleep$sleep_total)
 ```
 
 ```
-## [1] -15.8
-```
-
-
-```r
-nrow(mammals_sleep_difference == -15.8)
-```
-
-```
-## [1] 83
+## [1] 43
 ```
 
 ```r
-sleep[83,1]
+sleepiest_animal <- sleep$name[43]
+sleepiest_animal
 ```
 
 ```
-## [1] "Red fox"
+## [1] "Little brown bat"
 ```
 
 ## Push your final code to GitHub!
-Please be sure that you check the `keep md` file in the knit preferences.   
+Please be sure that you check the `keep md` file in the knit preferences. 
