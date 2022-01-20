@@ -1,7 +1,7 @@
 ---
 title: "dplyr Superhero"
 author: "Yutong Ji"
-date: "2022-01-18"
+date: "2022-01-20"
 output:
   html_document: 
     theme: spacelab
@@ -493,7 +493,7 @@ filter(superhero_info, weight>450)
 ## 8 Wolfs~ Female green     <NA>  Auburn      366   Marvel C~ <NA>       good     
 ## # ... with 1 more variable: weight <dbl>
 ```
-**Because the | function is more of a "and/or" situation where some heroes fit into one category but not the other, so not all the individuals in #11 and #12 can be excluded due to the restrictions. **
+**Because the | function is more of a "and/or" situation and it excludes the redundancy where a hero can fit into both categories. **
 
 ## Height to Weight Ratio
 13. It's easy to be strong when you are heavy and tall, but who is heavy and short? Which superheros have the highest height to weight ratio?
