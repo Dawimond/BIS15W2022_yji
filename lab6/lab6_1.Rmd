@@ -85,8 +85,10 @@ msleep24 %>%
 ## Practice
 1. Which taxonomic orders have species that belong to more than one class of `vore`?
 ```{r}
-msleep %>%
-  select(order, vore)
+msleep%>%
+  group_by(order)%>%
+  summarize(vore_type =n_distinct(vore))%>%
+  filter(vore_type>1)
 ```
 
 ## `summarize()`
