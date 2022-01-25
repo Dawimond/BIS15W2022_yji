@@ -42,17 +42,26 @@ life_history <- read_csv("data/mammal_lifehistories_v3.csv") %>% clean_names()
 
 2. Use one or more of the functions from the last lab to determine if there are NA's in the data, how they are represented, and where they are located.
 ```{r}
-
+life_history %>%
+  summarise_all(~(sum(is.na(.))))
 ```
 
 ```{r}
-
+life_history %>%
+  purrr::map_df(~ sum(is.na(.))) %>% 
+  pivot_longer(everything(),
+    names_to= "variables",
+    values_to = "num_nas") %>% 
+  arrange(desc(num_nas))
 ```
 
 
 3. Can we use a single approach to deal with NA's in this data set? Given what you learned in the previous lab, how would you manage the NA values?
 ```{r}
-
+life_history_tidy <- life_history %>%
+  na_if("-999") %>%
+  summarise_all(~(sum(is.na(.))))
+life_history_tidy
 ```
 
 ## `naniar`
@@ -101,12 +110,12 @@ Some key information:
 
 1. Import the data and do a little exploration. Be sure to clean the names if necessary.
 ```{r}
-
+import_export <- readr::read_csv("data/import_export.csv")
 ```
 
 2. Use `naniar` to summarize the NA's in each variable.
 ```{r}
-
+naniar::miss_var_summary(import_export)
 ```
 
 3. Try using `group_by()` with `naniar`. Look specifically at class and `exporter_reported_quantity`. For which taxonomic classes do we have a high proportion of missing export data?
