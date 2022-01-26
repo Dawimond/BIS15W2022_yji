@@ -89,10 +89,9 @@ Reference: Koerner SE, Poulsen JR, Blanchard EJ, Okouyi J, Clark CJ. Vertebrate 
 ```{r}
 invindodata <- readr::read_csv("data/IvindoData_DryadVersion.csv")
 invindodata_clean <- clean_names(invindodata)
-invindodata_clean$hunt_cat <- as.factor(invindodata_clean$hunt_cat)
-invindodata_clean$land_use <- as.factor(invindodata_clean$land_use)
+invindodata_clean %>%
+  mutate(across(c(hunt_cat, land_use), as.factor))
 ```
-
 10. (4 points) For the transects with high and moderate hunting intensity, how does the average diversity of birds and mammals compare?
 ```{r}
 invindodata_clean %>%

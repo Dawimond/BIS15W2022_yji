@@ -1,7 +1,7 @@
 ---
 title: "Midterm 1"
 author: "Yutong Ji"
-date: "2022-01-25"
+date: "2022-01-26"
 output:
   html_document: 
     theme: spacelab
@@ -206,10 +206,32 @@ invindodata <- readr::read_csv("data/IvindoData_DryadVersion.csv")
 
 ```r
 invindodata_clean <- clean_names(invindodata)
-invindodata_clean$hunt_cat <- as.factor(invindodata_clean$hunt_cat)
-invindodata_clean$land_use <- as.factor(invindodata_clean$land_use)
+invindodata_clean %>%
+  mutate(across(c(hunt_cat, land_use), as.factor))
 ```
 
+```
+## # A tibble: 24 x 26
+##    transect_id distance hunt_cat num_households land_use veg_rich veg_stems
+##          <dbl>    <dbl> <fct>             <dbl> <fct>       <dbl>     <dbl>
+##  1           1     7.14 Moderate             54 Park         16.7      31.2
+##  2           2    17.3  None                 54 Park         15.8      37.4
+##  3           2    18.3  None                 29 Park         16.9      32.3
+##  4           3    20.8  None                 29 Logging      12.4      29.4
+##  5           4    16.0  None                 29 Park         17.1      36  
+##  6           5    17.5  None                 29 Park         16.5      29.2
+##  7           6    24.1  None                 29 Park         14.8      31.2
+##  8           7    19.8  None                 54 Logging      13.2      32.6
+##  9           8     5.78 High                 25 Neither      12.6      23.7
+## 10           9     5.13 High                 73 Logging      16        27.1
+## # ... with 14 more rows, and 19 more variables: veg_liana <dbl>, veg_dbh <dbl>,
+## #   veg_canopy <dbl>, veg_understory <dbl>, ra_apes <dbl>, ra_birds <dbl>,
+## #   ra_elephant <dbl>, ra_monkeys <dbl>, ra_rodent <dbl>, ra_ungulate <dbl>,
+## #   rich_all_species <dbl>, evenness_all_species <dbl>,
+## #   diversity_all_species <dbl>, rich_bird_species <dbl>,
+## #   evenness_bird_species <dbl>, diversity_bird_species <dbl>,
+## #   rich_mammal_species <dbl>, evenness_mammal_species <dbl>, ...
+```
 10. (4 points) For the transects with high and moderate hunting intensity, how does the average diversity of birds and mammals compare?
 
 ```r
@@ -222,7 +244,7 @@ invindodata_clean %>%
 ```
 ## # A tibble: 2 x 3
 ##   hunt_cat mean_div_birds mean_div_mammals
-##   <fct>             <dbl>            <dbl>
+##   <chr>             <dbl>            <dbl>
 ## 1 High               1.66             1.74
 ## 2 Moderate           1.62             1.68
 ```
