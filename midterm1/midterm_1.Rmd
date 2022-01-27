@@ -40,6 +40,7 @@ In the midterm 1 folder there is a second folder called `data`. Inside the `data
 3. (2 points) Please load these data as a new object called `elephants`. Use the function(s) of your choice to get an idea of the structure of the data. Be sure to show the class of each variable.
 ```{r}
 elephants <- readr::read_csv(file = "data/ElephantsMF.csv")
+str(elephants)
 ```
 
 4. (2 points) Change the names of the variables to lower case and change the class of the variable `sex` to a factor.
@@ -61,16 +62,9 @@ mean(elephants_clean$age)
 
 7. (2 points) How does the average age and height of elephants compare by sex?
 ```{r}
-m_elephants <- elephants_clean %>%
-  filter(sex=="M")
-mean(m_elephants$age)
-mean(m_elephants$height)
-```
-```{r}
-f_elephants <- elephants_clean %>%
-  filter(sex=="F")
-mean(f_elephants$age)
-mean(f_elephants$height)
+elephants_clean %>%
+  group_by(sex) %>%
+  summarize(mean_age=mean(age), mean_height=mean(height))
 ```
 
 8. (2 points) How does the average height of elephants compare by sex for individuals over 20 years old. Include the min and max height as well as the number of individuals in the sample as part of your analysis.  
@@ -89,8 +83,9 @@ Reference: Koerner SE, Poulsen JR, Blanchard EJ, Okouyi J, Clark CJ. Vertebrate 
 ```{r}
 invindodata <- readr::read_csv("data/IvindoData_DryadVersion.csv")
 invindodata_clean <- clean_names(invindodata)
-invindodata_clean %>%
-  mutate(across(c(hunt_cat, land_use), as.factor))
+str(invindodata_clean)
+invindodata_clean$hunt_cat <- as.factor(invindodata_clean$hunt_cat)
+invindodata_clean$land_use <- as.factor(invindodata_clean$land_use)
 ```
 10. (4 points) For the transects with high and moderate hunting intensity, how does the average diversity of birds and mammals compare?
 ```{r}

@@ -1,7 +1,7 @@
 ---
 title: "Midterm 1"
 author: "Yutong Ji"
-date: "2022-01-26"
+date: "2022-01-27"
 output:
   html_document: 
     theme: spacelab
@@ -90,6 +90,24 @@ elephants <- readr::read_csv(file = "data/ElephantsMF.csv")
 ## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
 ```
 
+```r
+str(elephants)
+```
+
+```
+## spec_tbl_df [288 x 3] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+##  $ Age   : num [1:288] 1.4 17.5 12.8 11.2 12.7 ...
+##  $ Height: num [1:288] 120 227 235 210 220 ...
+##  $ Sex   : chr [1:288] "M" "M" "M" "M" ...
+##  - attr(*, "spec")=
+##   .. cols(
+##   ..   Age = col_double(),
+##   ..   Height = col_double(),
+##   ..   Sex = col_character()
+##   .. )
+##  - attr(*, "problems")=<externalptr>
+```
+
 4. (2 points) Change the names of the variables to lower case and change the class of the variable `sex` to a factor.
 
 ```r
@@ -125,39 +143,17 @@ mean(elephants_clean$age)
 7. (2 points) How does the average age and height of elephants compare by sex?
 
 ```r
-m_elephants <- elephants_clean %>%
-  filter(sex=="M")
-mean(m_elephants$age)
+elephants_clean %>%
+  group_by(sex) %>%
+  summarize(mean_age=mean(age), mean_height=mean(height))
 ```
 
 ```
-## [1] 8.945145
-```
-
-```r
-mean(m_elephants$height)
-```
-
-```
-## [1] 185.1312
-```
-
-```r
-f_elephants <- elephants_clean %>%
-  filter(sex=="F")
-mean(f_elephants$age)
-```
-
-```
-## [1] 12.8354
-```
-
-```r
-mean(f_elephants$height)
-```
-
-```
-## [1] 190.0307
+## # A tibble: 2 x 3
+##   sex   mean_age mean_height
+##   <fct>    <dbl>       <dbl>
+## 1 F        12.8         190.
+## 2 M         8.95        185.
 ```
 
 8. (2 points) How does the average height of elephants compare by sex for individuals over 20 years old. Include the min and max height as well as the number of individuals in the sample as part of your analysis.  
@@ -206,31 +202,72 @@ invindodata <- readr::read_csv("data/IvindoData_DryadVersion.csv")
 
 ```r
 invindodata_clean <- clean_names(invindodata)
-invindodata_clean %>%
-  mutate(across(c(hunt_cat, land_use), as.factor))
+str(invindodata_clean)
 ```
 
 ```
-## # A tibble: 24 x 26
-##    transect_id distance hunt_cat num_households land_use veg_rich veg_stems
-##          <dbl>    <dbl> <fct>             <dbl> <fct>       <dbl>     <dbl>
-##  1           1     7.14 Moderate             54 Park         16.7      31.2
-##  2           2    17.3  None                 54 Park         15.8      37.4
-##  3           2    18.3  None                 29 Park         16.9      32.3
-##  4           3    20.8  None                 29 Logging      12.4      29.4
-##  5           4    16.0  None                 29 Park         17.1      36  
-##  6           5    17.5  None                 29 Park         16.5      29.2
-##  7           6    24.1  None                 29 Park         14.8      31.2
-##  8           7    19.8  None                 54 Logging      13.2      32.6
-##  9           8     5.78 High                 25 Neither      12.6      23.7
-## 10           9     5.13 High                 73 Logging      16        27.1
-## # ... with 14 more rows, and 19 more variables: veg_liana <dbl>, veg_dbh <dbl>,
-## #   veg_canopy <dbl>, veg_understory <dbl>, ra_apes <dbl>, ra_birds <dbl>,
-## #   ra_elephant <dbl>, ra_monkeys <dbl>, ra_rodent <dbl>, ra_ungulate <dbl>,
-## #   rich_all_species <dbl>, evenness_all_species <dbl>,
-## #   diversity_all_species <dbl>, rich_bird_species <dbl>,
-## #   evenness_bird_species <dbl>, diversity_bird_species <dbl>,
-## #   rich_mammal_species <dbl>, evenness_mammal_species <dbl>, ...
+## spec_tbl_df [24 x 26] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+##  $ transect_id             : num [1:24] 1 2 2 3 4 5 6 7 8 9 ...
+##  $ distance                : num [1:24] 7.14 17.31 18.32 20.85 15.95 ...
+##  $ hunt_cat                : chr [1:24] "Moderate" "None" "None" "None" ...
+##  $ num_households          : num [1:24] 54 54 29 29 29 29 29 54 25 73 ...
+##  $ land_use                : chr [1:24] "Park" "Park" "Park" "Logging" ...
+##  $ veg_rich                : num [1:24] 16.7 15.8 16.9 12.4 17.1 ...
+##  $ veg_stems               : num [1:24] 31.2 37.4 32.3 29.4 36 ...
+##  $ veg_liana               : num [1:24] 5.78 13.25 4.75 9.78 13.25 ...
+##  $ veg_dbh                 : num [1:24] 49.6 34.6 42.8 36.6 41.5 ...
+##  $ veg_canopy              : num [1:24] 3.78 3.75 3.43 3.75 3.88 2.5 4 4 3 3.25 ...
+##  $ veg_understory          : num [1:24] 2.89 3.88 3 2.75 3.25 3 2.38 2.71 3.25 3.13 ...
+##  $ ra_apes                 : num [1:24] 1.87 0 4.49 12.93 0 ...
+##  $ ra_birds                : num [1:24] 52.7 52.2 37.4 59.3 52.6 ...
+##  $ ra_elephant             : num [1:24] 0 0.86 1.33 0.56 1 0 1.11 0.43 2.2 0 ...
+##  $ ra_monkeys              : num [1:24] 38.6 28.5 41.8 19.9 41.3 ...
+##  $ ra_rodent               : num [1:24] 4.22 6.04 1.06 3.66 2.52 1.83 3.1 1.26 4.37 6.31 ...
+##  $ ra_ungulate             : num [1:24] 2.66 12.41 13.86 3.71 2.53 ...
+##  $ rich_all_species        : num [1:24] 22 20 22 19 20 22 23 19 19 19 ...
+##  $ evenness_all_species    : num [1:24] 0.793 0.773 0.74 0.681 0.811 0.786 0.818 0.757 0.773 0.668 ...
+##  $ diversity_all_species   : num [1:24] 2.45 2.31 2.29 2.01 2.43 ...
+##  $ rich_bird_species       : num [1:24] 11 10 11 8 8 10 11 11 11 9 ...
+##  $ evenness_bird_species   : num [1:24] 0.732 0.704 0.688 0.559 0.799 0.771 0.801 0.687 0.784 0.573 ...
+##  $ diversity_bird_species  : num [1:24] 1.76 1.62 1.65 1.16 1.66 ...
+##  $ rich_mammal_species     : num [1:24] 11 10 11 11 12 12 12 8 8 10 ...
+##  $ evenness_mammal_species : num [1:24] 0.736 0.705 0.65 0.619 0.736 0.694 0.776 0.79 0.821 0.783 ...
+##  $ diversity_mammal_species: num [1:24] 1.76 1.62 1.56 1.48 1.83 ...
+##  - attr(*, "spec")=
+##   .. cols(
+##   ..   TransectID = col_double(),
+##   ..   Distance = col_double(),
+##   ..   HuntCat = col_character(),
+##   ..   NumHouseholds = col_double(),
+##   ..   LandUse = col_character(),
+##   ..   Veg_Rich = col_double(),
+##   ..   Veg_Stems = col_double(),
+##   ..   Veg_liana = col_double(),
+##   ..   Veg_DBH = col_double(),
+##   ..   Veg_Canopy = col_double(),
+##   ..   Veg_Understory = col_double(),
+##   ..   RA_Apes = col_double(),
+##   ..   RA_Birds = col_double(),
+##   ..   RA_Elephant = col_double(),
+##   ..   RA_Monkeys = col_double(),
+##   ..   RA_Rodent = col_double(),
+##   ..   RA_Ungulate = col_double(),
+##   ..   Rich_AllSpecies = col_double(),
+##   ..   Evenness_AllSpecies = col_double(),
+##   ..   Diversity_AllSpecies = col_double(),
+##   ..   Rich_BirdSpecies = col_double(),
+##   ..   Evenness_BirdSpecies = col_double(),
+##   ..   Diversity_BirdSpecies = col_double(),
+##   ..   Rich_MammalSpecies = col_double(),
+##   ..   Evenness_MammalSpecies = col_double(),
+##   ..   Diversity_MammalSpecies = col_double()
+##   .. )
+##  - attr(*, "problems")=<externalptr>
+```
+
+```r
+invindodata_clean$hunt_cat <- as.factor(invindodata_clean$hunt_cat)
+invindodata_clean$land_use <- as.factor(invindodata_clean$land_use)
 ```
 10. (4 points) For the transects with high and moderate hunting intensity, how does the average diversity of birds and mammals compare?
 
@@ -244,7 +281,7 @@ invindodata_clean %>%
 ```
 ## # A tibble: 2 x 3
 ##   hunt_cat mean_div_birds mean_div_mammals
-##   <chr>             <dbl>            <dbl>
+##   <fct>             <dbl>            <dbl>
 ## 1 High               1.66             1.74
 ## 2 Moderate           1.62             1.68
 ```
