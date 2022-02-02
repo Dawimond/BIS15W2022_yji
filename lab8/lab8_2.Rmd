@@ -86,7 +86,7 @@ heartrate2 %>%
 
 2. `unite()` is the opposite of separate(). Its syntax is straightforward. You only need to give a new column name and then list the columns to combine with a separation character.  Give it a try below by recombining patient and sex from `heartrate3`.  
 ```{r}
-
+?unite
 ```
 
 ## `pivot_wider()`
