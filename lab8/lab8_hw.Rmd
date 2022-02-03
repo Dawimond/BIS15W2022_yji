@@ -97,6 +97,14 @@ sydneybeaches_mean <- sydneybeaches_long %>%
 
 8. Make the output from question 7 easier to read by pivoting it to wide format.
 ```{r}
+sydneybeaches_mean <- sydneybeaches_long %>%
+  separate(date, into= c("day", "month", "year"), sep = "/") %>%
+  filter(!is.na(enterococci_cfu_100ml)) %>% 
+  pivot_wider(-c(day,month), 
+              names_from = year, 
+              values_from = enterococci_cfu_100ml, 
+              values_fill = list(enterococci_cfu_100ml = 0),
+              values_fn = list(enterococci_cfu_100ml = mean, na.rm = T))
 sydneybeaches_mean
 ```
 

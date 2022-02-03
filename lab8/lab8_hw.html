@@ -342,7 +342,15 @@ sydneybeaches_wide</code></pre>
 <ol start="8" style="list-style-type: decimal">
 <li>Make the output from question 7 easier to read by pivoting it to wide format.</li>
 </ol>
-<pre class="r"><code>sydneybeaches_mean</code></pre>
+<pre class="r"><code>sydneybeaches_mean &lt;- sydneybeaches_long %&gt;%
+  separate(date, into= c(&quot;day&quot;, &quot;month&quot;, &quot;year&quot;), sep = &quot;/&quot;) %&gt;%
+  filter(!is.na(enterococci_cfu_100ml)) %&gt;% 
+  pivot_wider(-c(day,month), 
+              names_from = year, 
+              values_from = enterococci_cfu_100ml, 
+              values_fill = list(enterococci_cfu_100ml = 0),
+              values_fn = list(enterococci_cfu_100ml = mean, na.rm = T))
+sydneybeaches_mean</code></pre>
 <pre><code>## # A tibble: 11 x 7
 ##    site                    `2013` `2014` `2015` `2016` `2017` `2018`
 ##    &lt;chr&gt;                    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
