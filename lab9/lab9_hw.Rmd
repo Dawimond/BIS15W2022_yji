@@ -78,30 +78,30 @@ colleges_clean %>%
 4. The column `COSTT4_A` is the annual cost of each institution. Which city has the highest average cost? Where is it located?
 ```{r}
 colleges_clean %>%
-  group_by(city, stabbr) %>%
-  summarise(ave_cost = sum(costt4_a)) %>%
+  group_by(city) %>%
+  summarise(ave_cost = sum(costt4_a, na.rm = T)) %>%
   arrange(desc(ave_cost))
 ```
 
 5. Based on your answer to #4, make a plot that compares the cost of the individual colleges in the most expensive city. Bonus! Add UC Davis here to see how it compares :>).
 ```{r}
 colleges_clean %>% 
-  filter(city == "Whittier") %>% 
-  ggplot(aes(x=instnm, y=costt4_a))+
+  filter(city == "Los Angeles") %>% 
+  ggplot(aes(x=instnm, y=costt4_a, na.rm = T))+
   geom_bar(stat="identity")
 ```
 
 6. The column `ADM_RATE` is the admissions rate by college and `C150_4_POOLED` is the four-year completion rate. Use a scatterplot to show the relationship between these two variables. What do you think this means?
 ```{r}
 colleges_clean %>% 
-  ggplot(aes(x=adm_rate, y=c150_4_pooled))+
+  ggplot(aes(x=adm_rate, y=c150_4_pooled, na.rm = T))+
   geom_jitter()
 ```
 
 7. Is there a relationship between cost and four-year completion rate? (You don't need to do the stats, just produce a plot). What do you think this means?
 ```{r}
 colleges_clean %>% 
-  ggplot(aes(x=costt4_a, y=c150_4_pooled))+
+  ggplot(aes(x=costt4_a, y=c150_4_pooled, na.rm = T))+
   geom_jitter()
 ```
 

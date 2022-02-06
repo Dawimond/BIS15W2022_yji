@@ -162,30 +162,25 @@ colleges_clean %>%
 
 ```r
 colleges_clean %>%
-  group_by(city, stabbr) %>%
-  summarise(ave_cost = sum(costt4_a)) %>%
+  group_by(city) %>%
+  summarise(ave_cost = sum(costt4_a, na.rm = T)) %>%
   arrange(desc(ave_cost))
 ```
 
 ```
-## `summarise()` has grouped output by 'city'. You can override using the `.groups` argument.
-```
-
-```
-## # A tibble: 161 x 3
-## # Groups:   city [161]
-##    city          stabbr ave_cost
-##    <chr>         <chr>     <dbl>
-##  1 Whittier      CA        88186
-##  2 Malibu        CA        66152
-##  3 Valencia      CA        64686
-##  4 Redlands      CA        61542
-##  5 Moraga        CA        61095
-##  6 Costa Mesa    CA        57867
-##  7 La Jolla      CA        57663
-##  8 Atherton      CA        56035
-##  9 Santa Clarita CA        54830
-## 10 Thousand Oaks CA        54373
+## # A tibble: 161 x 2
+##    city          ave_cost
+##    <chr>            <dbl>
+##  1 Los Angeles     611936
+##  2 San Francisco   436999
+##  3 San Diego       373941
+##  4 Claremont       332490
+##  5 Oakland         162814
+##  6 Pasadena        136849
+##  7 Irvine          130502
+##  8 Riverside       127931
+##  9 Santa Barbara   108267
+## 10 Stockton         96476
 ## # ... with 151 more rows
 ```
 
@@ -193,9 +188,13 @@ colleges_clean %>%
 
 ```r
 colleges_clean %>% 
-  filter(city == "Whittier") %>% 
-  ggplot(aes(x=instnm, y=costt4_a))+
+  filter(city == "Los Angeles") %>% 
+  ggplot(aes(x=instnm, y=costt4_a, na.rm = T))+
   geom_bar(stat="identity")
+```
+
+```
+## Warning: Removed 9 rows containing missing values (position_stack).
 ```
 
 ![](lab9_hw_files/figure-html/unnamed-chunk-9-1.png)<!-- -->
@@ -204,7 +203,7 @@ colleges_clean %>%
 
 ```r
 colleges_clean %>% 
-  ggplot(aes(x=adm_rate, y=c150_4_pooled))+
+  ggplot(aes(x=adm_rate, y=c150_4_pooled, na.rm = T))+
   geom_jitter()
 ```
 
@@ -218,7 +217,7 @@ colleges_clean %>%
 
 ```r
 colleges_clean %>% 
-  ggplot(aes(x=costt4_a, y=c150_4_pooled))+
+  ggplot(aes(x=costt4_a, y=c150_4_pooled, na.rm = T))+
   geom_jitter()
 ```
 
