@@ -163,24 +163,24 @@ colleges_clean %>%
 ```r
 colleges_clean %>%
   group_by(city) %>%
-  summarise(ave_cost = sum(costt4_a, na.rm = T)) %>%
+  summarise(ave_cost = mean(costt4_a, na.rm = T)) %>%
   arrange(desc(ave_cost))
 ```
 
 ```
 ## # A tibble: 161 x 2
-##    city          ave_cost
-##    <chr>            <dbl>
-##  1 Los Angeles     611936
-##  2 San Francisco   436999
-##  3 San Diego       373941
-##  4 Claremont       332490
-##  5 Oakland         162814
-##  6 Pasadena        136849
-##  7 Irvine          130502
-##  8 Riverside       127931
-##  9 Santa Barbara   108267
-## 10 Stockton         96476
+##    city                ave_cost
+##    <chr>                  <dbl>
+##  1 Claremont              66498
+##  2 Malibu                 66152
+##  3 Valencia               64686
+##  4 Orange                 64501
+##  5 Redlands               61542
+##  6 Moraga                 61095
+##  7 Atherton               56035
+##  8 Thousand Oaks          54373
+##  9 Rancho Palos Verdes    50758
+## 10 La Verne               50603
 ## # ... with 151 more rows
 ```
 
@@ -188,13 +188,13 @@ colleges_clean %>%
 
 ```r
 colleges_clean %>% 
-  filter(city == "Los Angeles") %>% 
-  ggplot(aes(x=instnm, y=costt4_a, na.rm = T))+
+  filter(city == "Claremont") %>% 
+  ggplot(aes(x=instnm, y=costt4_a))+
   geom_bar(stat="identity")
 ```
 
 ```
-## Warning: Removed 9 rows containing missing values (position_stack).
+## Warning: Removed 2 rows containing missing values (position_stack).
 ```
 
 ![](lab9_hw_files/figure-html/unnamed-chunk-9-1.png)<!-- -->

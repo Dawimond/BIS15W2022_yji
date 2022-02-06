@@ -79,15 +79,15 @@ colleges_clean %>%
 ```{r}
 colleges_clean %>%
   group_by(city) %>%
-  summarise(ave_cost = sum(costt4_a, na.rm = T)) %>%
+  summarise(ave_cost = mean(costt4_a, na.rm = T)) %>%
   arrange(desc(ave_cost))
 ```
 
 5. Based on your answer to #4, make a plot that compares the cost of the individual colleges in the most expensive city. Bonus! Add UC Davis here to see how it compares :>).
 ```{r}
 colleges_clean %>% 
-  filter(city == "Los Angeles") %>% 
-  ggplot(aes(x=instnm, y=costt4_a, na.rm = T))+
+  filter(city == "Claremont") %>% 
+  ggplot(aes(x=instnm, y=costt4_a))+
   geom_bar(stat="identity")
 ```
 
