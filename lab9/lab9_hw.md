@@ -1,7 +1,7 @@
 ---
 title: "Lab 9 Homework"
 author: "Yutong Ji"
-date: "2022-02-05"
+date: "2022-02-07"
 output:
   html_document: 
     theme: spacelab
@@ -284,28 +284,25 @@ univ_calif_final %>%
 
 ```r
 univ_calif_final %>%
-  arrange(desc(adm_rate))
+  separate(instnm, into= c("univ", "campus"), sep = "-") %>%
+  filter(adm_rate==max(adm_rate)|adm_rate==min(adm_rate)) %>% 
+  select(univ, campus, adm_rate)
 ```
 
 ```
-## # A tibble: 8 x 10
-##   instnm      city   stabbr zip   adm_rate sat_avg pcip26 costt4_a c150_4_pooled
-##   <chr>       <chr>  <chr>  <chr>    <dbl>   <dbl>  <dbl>    <dbl>         <dbl>
-## 1 University~ River~ CA     92521    0.663    1078  0.149    31494         0.73 
-## 2 University~ Santa~ CA     9506~    0.578    1201  0.193    34608         0.776
-## 3 University~ Davis  CA     9561~    0.423    1218  0.198    33904         0.850
-## 4 University~ Irvine CA     92697    0.406    1206  0.107    31198         0.876
-## 5 University~ Santa~ CA     93106    0.358    1281  0.108    34998         0.816
-## 6 University~ La Jo~ CA     92093    0.357    1324  0.216    31043         0.872
-## 7 University~ Los A~ CA     9009~    0.180    1334  0.155    33078         0.911
-## 8 University~ Berke~ CA     94720    0.169    1422  0.105    34924         0.916
-## # ... with 1 more variable: pftftug1_ef <dbl>
+## # A tibble: 2 x 3
+##   univ                     campus    adm_rate
+##   <chr>                    <chr>        <dbl>
+## 1 University of California Riverside    0.663
+## 2 University of California Berkeley     0.169
 ```
 
 
 ```r
 univ_calif_final %>% 
   separate(instnm, into= c("univ", "campus"), sep = "-") %>%
+  filter(adm_rate==max(adm_rate)|adm_rate==min(adm_rate)) %>% 
+  select(univ, campus, adm_rate) %>%
   ggplot(aes(x=campus, y=adm_rate))+
   geom_col()
 ```
@@ -316,28 +313,25 @@ univ_calif_final %>%
 
 ```r
 univ_calif_final %>%
-  arrange(desc(pcip26))
+  separate(instnm, into= c("univ", "campus"), sep = "-") %>%
+  filter(pcip26==max(pcip26)|pcip26==min(pcip26)) %>% 
+  select(univ, campus, pcip26)
 ```
 
 ```
-## # A tibble: 8 x 10
-##   instnm      city   stabbr zip   adm_rate sat_avg pcip26 costt4_a c150_4_pooled
-##   <chr>       <chr>  <chr>  <chr>    <dbl>   <dbl>  <dbl>    <dbl>         <dbl>
-## 1 University~ La Jo~ CA     92093    0.357    1324  0.216    31043         0.872
-## 2 University~ Davis  CA     9561~    0.423    1218  0.198    33904         0.850
-## 3 University~ Santa~ CA     9506~    0.578    1201  0.193    34608         0.776
-## 4 University~ Los A~ CA     9009~    0.180    1334  0.155    33078         0.911
-## 5 University~ River~ CA     92521    0.663    1078  0.149    31494         0.73 
-## 6 University~ Santa~ CA     93106    0.358    1281  0.108    34998         0.816
-## 7 University~ Irvine CA     92697    0.406    1206  0.107    31198         0.876
-## 8 University~ Berke~ CA     94720    0.169    1422  0.105    34924         0.916
-## # ... with 1 more variable: pftftug1_ef <dbl>
+## # A tibble: 2 x 3
+##   univ                     campus    pcip26
+##   <chr>                    <chr>      <dbl>
+## 1 University of California San Diego  0.216
+## 2 University of California Berkeley   0.105
 ```
 
 
 ```r
-univ_calif_final %>% 
+univ_calif_final %>%
   separate(instnm, into= c("univ", "campus"), sep = "-") %>%
+  filter(pcip26==max(pcip26)|pcip26==min(pcip26)) %>% 
+  select(univ, campus, pcip26) %>%
   ggplot(aes(x=campus, y=pcip26))+
   geom_col()
 ```
